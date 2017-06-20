@@ -13,8 +13,8 @@ function product() {
   }, [[]]);
 }
 
-function getFileContent() {
-    const data = fs.readFileSync('./vocabulary.txt');
+function getFileContent(file) {
+    const data = fs.readFileSync(file);
     return data.toString('utf-8');
 }
 
@@ -78,7 +78,8 @@ function* traverse(graph, starting_vertex) {
 
 
 //USAGE
-const word_graph = build_graph(getWords(getFileContent()));
+const pathToVocabulary = './vocabulary.txt';
+const word_graph = build_graph(getWords(getFileContent(pathToVocabulary)));
 
 for ({ vertex, path } of traverse(word_graph, 'FOOL')) {
     if (vertex == 'LUCK') {
